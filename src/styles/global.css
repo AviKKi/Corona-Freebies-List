@@ -1,0 +1,17 @@
+html,
+body{
+	width:100%;
+	height:100%;
+	padding:0;
+	margin:0;
+}
+
+a{
+    background-image: none;
+}
+
+.imageCards:hover{
+    -webkit-box-shadow: 10px 10px 14px 0px rgba(196,190,196,1);
+    -moz-box-shadow: 10px 10px 14px 0px rgba(196,190,196,1);
+    box-shadow: 10px 10px 14px 0px rgba(196,190,196,1);
+}
