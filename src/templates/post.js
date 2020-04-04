@@ -7,17 +7,17 @@ import styled from "@emotion/styled"
 import SEO from "../components/seo"
 
 const Tag = styled.p`
-    margin:5px;
-    padding:5px;
-    border-radius:10px;
-    border:1px solid #81dfe3;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid #81dfe3;
 
-    &:hover{
-        border:1px solid #3481fb;
-    }
+  &:hover {
+    border: 1px solid #3481fb;
+  }
 `
 
-const shortcodes = {Tag}
+const shortcodes = { Tag }
 
 export const query = graphql`
   query($slug: String!) {
@@ -25,9 +25,9 @@ export const query = graphql`
       frontmatter {
         site
         slug
-        title,
-        description,
-        tags,
+        title
+        description
+        tags
         siteUrl
       }
       body
@@ -41,7 +41,7 @@ export default ({ data: { mdx: post } }) => {
     <Layout width={1300}>
       <SEO title={post.frontmatter.title} description={post.excerpt} />
       <MDXProvider components={shortcodes}>
-          <MDXRenderer frontmatter={post.frontmatter}>{post.body}</MDXRenderer>
+        <MDXRenderer frontmatter={post.frontmatter}>{post.body}</MDXRenderer>
       </MDXProvider>
     </Layout>
   )
