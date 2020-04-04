@@ -53,7 +53,6 @@ export default ({ data: { mdx: post } }) => {
         <a href={post.frontmatter.siteUrl} target="_blank">
           {post.frontmatter.siteUrl}
         </a>
-        <h4 style={{ paddingTop: "10px" }}>Examples:</h4>
       </div>
 
       <MDXProvider components={shortcodes}>
