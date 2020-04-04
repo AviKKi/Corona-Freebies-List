@@ -126,7 +126,6 @@ const CustomLink = styled.a`
 `
 
 export default ({ data: { allMdx: post, file: bannerimg } }) => {
-  console.log(bannerimg)
   return (
     <>
       <Layout width={1500}>
@@ -141,7 +140,7 @@ export default ({ data: { allMdx: post, file: bannerimg } }) => {
             style={{ maxWidth: "500px", width: "100%" }}
           />
           <div>
-            <h1 style={{ marginTop: "10px", textAlign: "center" }}>
+            <h1 style={{ marginTop: "0px", textAlign: "center" }}>
               Corona Freebeis
             </h1>
             <p>
@@ -207,7 +206,7 @@ export const query = graphql`
         }
       }
     }
-    file(sourceInstanceName: { eq: "images" }, name: { eq: "1" }) {
+    file(sourceInstanceName: { eq: "images" }, name: { eq: "designer" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid_tracedSVG

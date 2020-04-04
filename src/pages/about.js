@@ -80,7 +80,7 @@ export default ({ data: { file: image } }) => {
           <Img
             fluid={image.childImageSharp.fluid}
             alt=""
-            style={{ width: "800px", order: 1 }}
+            style={{ width: "750px", order: 1 }}
           />
         </div>
       </Layout>
@@ -90,7 +90,7 @@ export default ({ data: { file: image } }) => {
 
 export const pageQuery = graphql`
   query {
-    file(relativePath: { eq: "about_me.png" }) {
+    file(relativePath: { eq: "code.png" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid_tracedSVG
