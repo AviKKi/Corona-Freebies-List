@@ -8,7 +8,7 @@ import SEO from "../components/seo"
 
 const Tag = styled.p`
   margin: 5px;
-  padding: 5px;
+  padding: 5px 10px;
   border-radius: 10px;
   border: 1px solid #81dfe3;
 
