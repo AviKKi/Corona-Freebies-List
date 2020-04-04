@@ -9,7 +9,7 @@ import SEO from "../components/seo"
 const Description = styled.div`
   width: 100%;
   max-width: 450px;
-  height: 280px;
+  height: 320px;
   background-color: #fff;
   border: 1px solid #e1e1e1;
   margin: 50px 50px 100px 50px;
@@ -38,14 +38,11 @@ const Banner = styled.div`
 
 const Content = styled.div`
   position: relative;
-  bottom: 400px;
+  bottom: 200px;
   height: 100%;
-  width: 220px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  left: 11em;
-
   @media (max-width: 450px) {
     bottom: 150px;
     width: inherit;
@@ -54,14 +51,14 @@ const Content = styled.div`
 `
 
 const ImageCard = styled(Img)`
-  width: 350px;
-  height: 350px;
+  width: 200px;
+  height: 200px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
-  top: -50px;
-  left: -90px;
+  top: -80px;
+  left: -80px;
   @media (max-width: 450px) {
     top: -100px;
     left: 50%;
@@ -75,9 +72,9 @@ const ImageCard = styled(Img)`
 const Tags = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  width: 180px;
-  margin-top: 30px;
+  justify-content: flex-start;
+  width: 100%;
+  padding-left: 40px;
 
   @media (max-width: 450px) {
     width: 100%;
@@ -87,7 +84,7 @@ const Tags = styled.div`
 
 const Tag = styled.p`
   margin: 5px;
-  padding: 5px;
+  padding: 5px 10px;
   border-radius: 10px;
   border: 1px solid #81dfe3;
   color: black;
@@ -100,7 +97,9 @@ const Links = styled.div`
   display: flex;
   justify-content: space-around;
   width: 170px;
-  margin-top: 50px;
+  position: absolute;
+  right: 0;
+  bottom: 30px;
 
   @media (max-width: 450px) {
     width: 100%;
@@ -108,11 +107,18 @@ const Links = styled.div`
     justify-content: space-around;
   }
 `
+const CardSubText = styled.p`
+  padding-left: 40px;
+  color: #444;
+  font-size: 0.9em;
+  margin-bottom: 0.5em;
+`
 
 const CustomLink = styled.a`
   color: #1ca086;
   background-color: #fff;
   background-image: none;
+  float: right;
   &:hover {
     background-image: linear-gradient(
       to top,
@@ -124,6 +130,27 @@ const CustomLink = styled.a`
     );
   }
 `
+
+const ItemCard = ({ item, index }) => {
+  console.log(item)
+  return (
+    <Description key={index}>
+      <ImageCard fluid={item.frontmatter.show.childImageSharp.fluid} />
+      <Content>
+        <h2 style={{ marginTop: "70px" }}>{item.frontmatter.site}</h2>
+        <CardSubText>{item.frontmatter.description}</CardSubText>
+        <Tags>
+          {item.frontmatter.tags.map((tag, index) => {
+            return <Tag key={index}>{tag}</Tag>
+          })}
+        </Tags>
+        <Links>
+          <CustomLink href={item.frontmatter.slug}>Details -></CustomLink>
+        </Links>
+      </Content>
+    </Description>
+  )
+}
 
 export default ({ data: { allMdx: post, file: bannerimg } }) => {
   return (
@@ -158,29 +185,9 @@ export default ({ data: { allMdx: post, file: bannerimg } }) => {
             marginTop: "60px",
           }}
         >
-          {post.nodes.map((item, index) => {
-            return (
-              <Description key={index}>
-                <ImageCard
-                  fluid={item.frontmatter.show.childImageSharp.fluid}
-                  alt=""
-                />
-                <Content>
-                  <h2 style={{ marginTop: "70px" }}>{item.frontmatter.site}</h2>
-                  <Tags>
-                    {item.frontmatter.tags.map((tag, index) => {
-                      return <Tag key={index}>{tag}</Tag>
-                    })}
-                  </Tags>
-                  <Links>
-                    <CustomLink href={item.frontmatter.slug}>
-                      Showcase ->
-                    </CustomLink>
-                  </Links>
-                </Content>
-              </Description>
-            )
-          })}
+          {post.nodes.map((item, index) => (
+            <ItemCard item={item} index={index} />
+          ))}
         </div>
       </Layout>
     </>
@@ -196,6 +203,7 @@ export const query = graphql`
           site
           siteUrl
           tags
+          description
           show {
             childImageSharp {
               fluid {
