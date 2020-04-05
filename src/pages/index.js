@@ -1,4 +1,4 @@
-import React , {useState} from "react"
+import React, { useState } from "react"
 import Layout from "../components/Layout"
 import styled from "@emotion/styled"
 import { graphql } from "gatsby"
@@ -6,9 +6,9 @@ import Img from "gatsby-image"
 import { Link } from "gatsby"
 
 import SEO from "../components/seo"
-import Tag from '../components/Tag'
+import Tag from "../components/Tag"
 
-const TAGS = ['all','education','engineering','programming']
+const TAGS = ["all", "education", "engineering", "programming"]
 
 const Description = styled.div`
   width: 100%;
@@ -40,6 +40,12 @@ const Banner = styled.div`
   align-items: center;
   height: calc(100vh - 150px);
   flex-wrap: wrap;
+  border-radius: 5px;
+
+  @media (min-width: 450px) {
+    background: -webkit-linear-gradient(180deg, #2980b9, #6dd5fa, #ffffff);
+    background: linear-gradient(180deg, #2980b9, #6dd5fa, #ffffff);
+  }
 `
 
 const Content = styled.div`
@@ -88,11 +94,10 @@ const Tags = styled.div`
   }
 `
 
-
 const TagList = styled.div`
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `
 
 const Links = styled.div`
@@ -137,6 +142,14 @@ const CustomLink = styled.a`
   }
 `
 
+const CustomImg = styled(Img)`
+  @media (max-width: 450px) {
+    background: -webkit-linear-gradient(180deg, #2980b9, #6dd5fa, #ffffff);
+    background: linear-gradient(180deg, #2980b9, #6dd5fa, #ffffff);
+  }
+  border-radius: 5px;
+`
+
 const ItemCard = ({ item, index }) => {
   return (
     <Description key={index}>
@@ -157,22 +170,22 @@ const ItemCard = ({ item, index }) => {
   )
 }
 
-
 export default ({ data: { allMdx: post, file: bannerimg } }) => {
-  const [selectedtag,setTag] = useState('all')
-  const [filteredData,setFilterData] = useState({"nodes":[]})
-  const handleChange = (tag_name) => {
-     const selected_input = tag_name.toLowerCase()
-     const filteredData = post.nodes.filter(item => {
+  const [selectedtag, setTag] = useState("all")
+  const [filteredData, setFilterData] = useState({ nodes: [] })
+  const handleChange = tag_name => {
+    const selected_input = tag_name.toLowerCase()
+    const filteredData = post.nodes.filter(item => {
       const node = item.frontmatter
-      return (
-          node.tags.join("").toLowerCase().includes(selected_input) //convert tags from an array to str
-        )
-     })
-     setTag(tag_name)
-     setFilterData(filteredData)
+      return node.tags
+        .join("")
+        .toLowerCase()
+        .includes(selected_input) //convert tags from an array to str
+    })
+    setTag(tag_name)
+    setFilterData(filteredData)
   }
-  const hasSelectedAll = selectedtag === 'all'
+  const hasSelectedAll = selectedtag === "all"
   console.log(filteredData)
   const posts = hasSelectedAll ? post.nodes : filteredData
   return (
@@ -183,10 +196,13 @@ export default ({ data: { allMdx: post, file: bannerimg } }) => {
           description="List of Freebeis due to corona pandemic"
         />
         <Banner>
-          <Img
+          <CustomImg
             alt=""
             fluid={bannerimg.childImageSharp.fluid}
-            style={{ maxWidth: "500px", width: "100%" }}
+            style={{
+              maxWidth: "500px",
+              width: "100%",
+            }}
           />
           <div>
             <h1 style={{ marginTop: "0px", textAlign: "center" }}>
@@ -198,25 +214,44 @@ export default ({ data: { allMdx: post, file: bannerimg } }) => {
             </p>
           </div>
         </Banner>
-        <h1 style={{ textAlign: "center", marginTop: "10%" }}>Freebies List</h1>
-        <TagList>
-        {
-          TAGS.map((item,index) => {
-            return <Tag key={index} style={(selectedtag === item) ? {backgroundColor:'#3481fb',color:'white',border:'none',cursor:'pointer'}:{cursor:'pointer'}} onClick={() => handleChange(item)}>{item}</Tag>
-          })
-        }
-        </TagList>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            flexWrap: "wrap",
-            marginTop: "60px",
-          }}
-        >
-          {posts.map((item, index) => (
-            <ItemCard item={item} index={index} key={index} />
-          ))}
+        <div>
+          <h1 style={{ textAlign: "center", marginTop: "10%" }}>
+            Freebies List
+          </h1>
+          <TagList>
+            {TAGS.map((item, index) => {
+              return (
+                <Tag
+                  key={index}
+                  style={
+                    selectedtag === item
+                      ? {
+                          backgroundColor: "#3481fb",
+                          color: "white",
+                          border: "none",
+                          cursor: "pointer",
+                        }
+                      : { cursor: "pointer" }
+                  }
+                  onClick={() => handleChange(item)}
+                >
+                  {item}
+                </Tag>
+              )
+            })}
+          </TagList>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              marginTop: "60px",
+            }}
+          >
+            {posts.map((item, index) => (
+              <ItemCard item={item} index={index} key={index} />
+            ))}
+          </div>
         </div>
       </Layout>
     </>

@@ -5,9 +5,7 @@ import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import styled from "@emotion/styled"
 import SEO from "../components/seo"
-import Tag from '../components/Tag'
-
-
+import Tag from "../components/Tag"
 
 const shortcodes = { Tag }
 
@@ -37,7 +35,7 @@ export default ({ data: { mdx: post } }) => {
         <h1>{post.frontmatter.title}</h1>
         <p>{post.frontmatter.description}</p>
         <div style={{ display: "flex", marginBottom: "20px" }}>
-          {post.frontmatter.tags.map((tag,index) => (
+          {post.frontmatter.tags.map((tag, index) => (
             <Tag key={index}>{tag}</Tag>
           ))}
         </div>
