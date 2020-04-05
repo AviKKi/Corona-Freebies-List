@@ -166,9 +166,24 @@ const ItemCard = ({ item, index }) => {
   )
 }
 
+
 export default ({ data: { allMdx: post, file: bannerimg } }) => {
-  const [selectedtag,setTag] = useState('all');
-  console.log(selectedtag)
+  const [selectedtag,setTag] = useState('all')
+  const [filteredData,setFilterData] = useState({"nodes":[]})
+  const handleChange = (tag_name) => {
+     const selected_input = tag_name.toLowerCase()
+     const filteredData = post.nodes.filter(item => {
+      const node = item.frontmatter
+      return (
+          node.tags.join("").toLowerCase().includes(selected_input) //convert tags from an array to str
+        )
+     })
+     setTag(tag_name)
+     setFilterData(filteredData)
+  }
+  const hasSelectedAll = selectedtag === 'all'
+  console.log(filteredData)
+  const posts = hasSelectedAll ? post.nodes : filteredData
   return (
     <>
       <Layout width={1500}>
@@ -193,7 +208,13 @@ export default ({ data: { allMdx: post, file: bannerimg } }) => {
           </div>
         </Banner>
         <h1 style={{ textAlign: "center", marginTop: "10%" }}>Freebies List</h1>
-        
+        <TagList>
+        {
+          TAGS.map((item,index) => {
+            return <Tag key={index} style={(selectedtag === item) ? {backgroundColor:'#3481fb',color:'white',border:'none',cursor:'pointer'}:{cursor:'pointer'}} onClick={() => handleChange(item)}>{item}</Tag>
+          })
+        }
+        </TagList>
         <div
           style={{
             display: "flex",
@@ -202,7 +223,7 @@ export default ({ data: { allMdx: post, file: bannerimg } }) => {
             marginTop: "60px",
           }}
         >
-          {post.nodes.map((item, index) => (
+          {posts.map((item, index) => (
             <ItemCard item={item} index={index} key={index} />
           ))}
         </div>

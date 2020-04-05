@@ -45,8 +45,8 @@ export default ({ data: { mdx: post } }) => {
         <h1>{post.frontmatter.title}</h1>
         <p>{post.frontmatter.description}</p>
         <div style={{ display: "flex", marginBottom: "20px" }}>
-          {post.frontmatter.tags.map(tag => (
-            <Tag>{tag}</Tag>
+          {post.frontmatter.tags.map((tag,index) => (
+            <Tag key={index}>{tag}</Tag>
           ))}
         </div>
         Source:{" "}
