@@ -48,8 +48,8 @@ If you want to add more content to the wesbite or report anything feel free to [
 
 ## Authors
 
-* **Gilbish Kosma**  - [GilbishKosma](github.com/Gilbishkosma/)
-* **Atul Yadav**  - [Avikki](github.com/Avikki/)
+* **Gilbish Kosma**  - [GilbishKosma](https://github.com/Gilbishkosma/)
+* **Atul Yadav**  - [Avikki](https://github.com/Avikki/)
 
 See also the list of [contributors](https://github.com/AviKKi/Corona-Freebies-List/contributors.md) who participated in this project.
 
