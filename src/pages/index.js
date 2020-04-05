@@ -208,7 +208,7 @@ export default ({ data: { allMdx: post, file: bannerimg } }) => {
             <h1 style={{ marginTop: "0px", textAlign: "center" }}>
               Corona Freebeis
             </h1>
-            <p>
+            <p style={{ textAlign: "center" }}>
               One Place to look for all the freebies available when you are
               locked down.
             </p>
