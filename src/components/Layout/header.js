@@ -45,11 +45,11 @@ const Header = () => {
         justify-content: space-between;
         flex-wrap: wrap;
         padding: 0.5rem calc((100vw - 1000px) / 2); /* for header both side equal margin,this will be of equal width of main */
-      
+
         @media (max-width: 1000px) {
           padding: 10px 10px 0 10px;
         }
-        `}
+      `}
     >
       <div style={{ display: "flex" }}>
         <Img
