@@ -4,8 +4,9 @@ import styled from "@emotion/styled"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import { Link } from "gatsby"
-import SEO from "../components/seo"
 
+import SEO from "../components/seo"
+import Tag from '../components/Tag'
 
 const TAGS = ['all','education','engineering','programming']
 
@@ -87,16 +88,6 @@ const Tags = styled.div`
   }
 `
 
-const Tag = styled.p`
-  margin: 5px;
-  padding: 5px 10px;
-  border-radius: 10px;
-  border: 1px solid #81dfe3;
-  color: black;
-  &:hover {
-    border: 1px solid #3481fb;
-  }
-`
 
 const TagList = styled.div`
   display:flex;
