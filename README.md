@@ -2,7 +2,7 @@
 
 [List](https://coronafreebies.now.sh) of all the premium services which are freely available due to the global :earth_americas: pandemic and lockdown at many locations. So use these resources and stay safe at your homes :house: .
 
-    Please start :star1: this if you like my efforts.
+Please start :star2: this repo if you like my efforts.
 
 If you want to add more content to the wesbite or report anything feel free to [raise an issue](https://github.com/AviKKi/Corona-Freebies-List/issues/new/choose) or submit a PR.
 
