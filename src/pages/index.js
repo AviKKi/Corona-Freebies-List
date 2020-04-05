@@ -21,7 +21,9 @@ const Description = styled.div`
 
   @media (max-width: 450px) {
     margin: 50px 20px 100px 20px;
-    height: 330px;
+    height: 420px;
+    margin: 60px 0px;
+    padding: 0;
     &:first-of-type {
       margin-top: 100px;
     }
@@ -63,7 +65,6 @@ const ImageCard = styled(Img)`
     top: -100px;
     left: 50%;
     right: 50%;
-    width: 250px;
     height: 200px;
     transform: translate(-50%);
   }
@@ -78,7 +79,8 @@ const Tags = styled.div`
 
   @media (max-width: 450px) {
     width: 100%;
-    justify-content: center;
+    justify-content: flex-start;
+    padding: 0 5px;
   }
 `
 
@@ -102,8 +104,8 @@ const Links = styled.div`
   bottom: 30px;
 
   @media (max-width: 450px) {
-    width: 100%;
-    margin-top: 30px;
+    bottom: 70px;
+    right: -30px;
     justify-content: space-around;
   }
 `
@@ -112,6 +114,10 @@ const CardSubText = styled.p`
   color: #444;
   font-size: 0.9em;
   margin-bottom: 0.5em;
+
+  @media (max-width: 450px) {
+    padding: 0 5px;
+  }
 `
 
 const CustomLink = styled.a`
@@ -132,7 +138,6 @@ const CustomLink = styled.a`
 `
 
 const ItemCard = ({ item, index }) => {
-  console.log(item)
   return (
     <Description key={index}>
       <ImageCard fluid={item.frontmatter.show.childImageSharp.fluid} />
