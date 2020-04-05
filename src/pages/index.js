@@ -1,10 +1,13 @@
-import React from "react"
+import React , {useState} from "react"
 import Layout from "../components/Layout"
 import styled from "@emotion/styled"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import { Link } from "gatsby"
 import SEO from "../components/seo"
+
+
+const TAGS = ['all','education','engineering','programming']
 
 const Description = styled.div`
   width: 100%;
@@ -93,6 +96,12 @@ const Tag = styled.p`
   }
 `
 
+const TagList = styled.div`
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+`
+
 const Links = styled.div`
   display: flex;
   justify-content: space-around;
@@ -132,7 +141,6 @@ const CustomLink = styled.a`
 `
 
 const ItemCard = ({ item, index }) => {
-  console.log(item)
   return (
     <Description key={index}>
       <ImageCard fluid={item.frontmatter.show.childImageSharp.fluid} />
@@ -153,6 +161,8 @@ const ItemCard = ({ item, index }) => {
 }
 
 export default ({ data: { allMdx: post, file: bannerimg } }) => {
+  const [selectedtag,setTag] = useState('all');
+  console.log(selectedtag)
   return (
     <>
       <Layout width={1500}>
@@ -177,6 +187,7 @@ export default ({ data: { allMdx: post, file: bannerimg } }) => {
           </div>
         </Banner>
         <h1 style={{ textAlign: "center", marginTop: "10%" }}>Freebies List</h1>
+        
         <div
           style={{
             display: "flex",
@@ -186,7 +197,7 @@ export default ({ data: { allMdx: post, file: bannerimg } }) => {
           }}
         >
           {post.nodes.map((item, index) => (
-            <ItemCard item={item} index={index} />
+            <ItemCard item={item} index={index} key={index} />
           ))}
         </div>
       </Layout>
