@@ -8,7 +8,7 @@ import { Link } from "gatsby"
 import SEO from "../components/seo"
 import Tag from "../components/Tag"
 
-const TAGS = ["all", "education", "engineering", "programming"]
+const TAGS = ["all", "education", "office", "dating"]
 
 const Description = styled.div`
   width: 100%;
@@ -59,6 +59,27 @@ const Content = styled.div`
     bottom: 150px;
     width: inherit;
     left: 0px;
+  }
+`
+
+const Pagination = styled.div`
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+`
+
+const PageLink = styled.div`
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+  margin: 5px 4px;
+
+  &:hover{
+    background-color:#ddd;
+    cursor:pointer;
   }
 `
 
@@ -171,6 +192,8 @@ const ItemCard = ({ item, index }) => {
 }
 
 export default ({ data: { allMdx: post, file: bannerimg } }) => {
+  const posts_per_page = 10
+  const [page,setPage] = useState(0)
   const [selectedtag, setTag] = useState("all")
   const [filteredData, setFilterData] = useState({ nodes: [] })
   const handleChange = tag_name => {
@@ -186,8 +209,11 @@ export default ({ data: { allMdx: post, file: bannerimg } }) => {
     setFilterData(filteredData)
   }
   const hasSelectedAll = selectedtag === "all"
-  console.log(filteredData)
-  const posts = hasSelectedAll ? post.nodes : filteredData
+  const posts = (hasSelectedAll ? post.nodes : filteredData).slice((page*posts_per_page),((page*posts_per_page)+posts_per_page))
+  const totalPosts = (hasSelectedAll ? post.nodes.length : filteredData.length)
+  const post_divided = (totalPosts / posts_per_page)
+  const pages = ((post_divided % 1 === 0) ? [...Array(post_divided).keys()] :  [...Array(Math.floor(post_divided)+1).keys()]).map(i => i+1)
+
   return (
     <>
       <Layout width={1500}>
@@ -252,6 +278,25 @@ export default ({ data: { allMdx: post, file: bannerimg } }) => {
               <ItemCard item={item} index={index} key={index} />
             ))}
           </div>
+          <Pagination>
+            <PageLink onClick={() => {
+              if(page>0){
+                setPage(page-1)
+              }
+            }}>&laquo;</PageLink>
+            {
+            pages.map((item) => {
+            return <PageLink key={item} style={((page+1) === item) ? {backgroundColor:'#3481fb',color:'white'} : {} } onClick={() => setPage(item-1)}>
+                {item}
+            </PageLink>
+            })
+           } 
+           <PageLink onClick={() => {
+              if(page<(pages.length-1)){
+                setPage(page+1)
+              }
+            }}>&raquo;</PageLink>
+          </Pagination>
         </div>
       </Layout>
     </>
