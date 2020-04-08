@@ -8,7 +8,7 @@ import { Link } from "gatsby"
 import SEO from "../components/seo"
 import Tag from "../components/Tag"
 
-const TAGS = ["all", "education", "office", "dating"]
+const TAGS = ["all", "education", "office", "dating","productmanager"]
 
 const Description = styled.div`
   width: 100%;
