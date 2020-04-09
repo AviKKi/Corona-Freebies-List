@@ -37,8 +37,8 @@ export default ({ data: { file: image } }) => {
             <div>
               <h1 style={{ marginTop: "0px" }}>Hii, i am Atul Yadav</h1>
               <p>
-                I developed <b>Corona Freebies</b> inorder to list
-                <br /> some of free stuff you can try out while in the lockdown.
+                I developed <b>Corona Freebies</b> in order to list
+                <br /> some free stuff you can try out while in the lockdown.
                 <br />
                 Hope you will like it.
               </p>

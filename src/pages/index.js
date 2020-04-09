@@ -219,7 +219,7 @@ export default ({ data: { allMdx: post, file: bannerimg } }) => {
       <Layout width={1500}>
         <SEO
           title="Home"
-          description="List of Freebeis due to corona pandemic"
+          description="List of Freebies due to corona pandemic"
         />
         <Banner>
           <CustomImg
@@ -232,7 +232,7 @@ export default ({ data: { allMdx: post, file: bannerimg } }) => {
           />
           <div>
             <h1 style={{ marginTop: "0px", textAlign: "center" }}>
-              Corona Freebeis
+              Corona Freebies
             </h1>
             <p style={{ textAlign: "center" }}>
               One Place to look for all the freebies available when you are
