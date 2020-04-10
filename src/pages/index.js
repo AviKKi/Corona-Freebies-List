@@ -4,11 +4,11 @@ import styled from "@emotion/styled"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import { Link } from "gatsby"
-
+import SubscriptionForm from '../components/Subscription'
 import SEO from "../components/seo"
 import Tag from "../components/Tag"
 
-const TAGS = ["all", "education", "office", "dating","productmanager","health"]
+const TAGS = ["all", "education", "office", "dating","productmanager","health","knowledge"]
 
 const Description = styled.div`
   width: 100%;
@@ -297,6 +297,9 @@ export default ({ data: { allMdx: post, file: bannerimg } }) => {
               }
             }}>&raquo;</PageLink>
           </Pagination>
+        </div>
+        <div style={{display:'flex',justifyContent:'center',margin:'40px 0px'}}>
+          <SubscriptionForm />
         </div>
       </Layout>
     </>

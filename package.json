@@ -23,6 +23,7 @@
     "gatsby-image": "^2.2.43",
     "gatsby-plugin-emotion": "^4.1.24",
     "gatsby-plugin-google-analytics": "^2.2.1",
+    "gatsby-plugin-mailchimp": "^5.1.2",
     "gatsby-plugin-manifest": "^2.3.2",
     "gatsby-plugin-mdx": "^1.0.82",
     "gatsby-plugin-offline": "^3.1.1",
