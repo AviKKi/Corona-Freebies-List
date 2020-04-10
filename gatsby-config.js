@@ -15,6 +15,12 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
+        resolve: 'gatsby-plugin-mailchimp',
+        options: {
+            endpoint: 'https://now.us19.list-manage.com/subscribe/post?u=59dd30b3b6b0af283567d59ea&amp;id=df7489f988', // add your MC list endpoint here; see instructions below
+        },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `posts`,
