@@ -8,7 +8,7 @@ import SubscriptionForm from '../components/Subscription'
 import SEO from "../components/seo"
 import Tag from "../components/Tag"
 
-const TAGS = ["all", "education", "office", "dating","productmanager","health","knowledge"]
+const TAGS = ["all", "education", "office","productmanager","health","knowledge"]
 
 const Description = styled.div`
   width: 100%;
